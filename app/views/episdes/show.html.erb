@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" >Series Breaking Bad y Better Call Saul</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <%= form_tag(personajes_show_path, method: :get) do %>
+          <%= text_field_tag(:search, params[:search], placeholder: "Búsqueda por personaje", size:"30")  %>
+          <%= submit_tag("Buscar") %>
+        <% end %>
+    </ul>
+  </div>
+</nav>
+<br>
+<div class="container">
+<div class="columns">
+    <div class="column">
+        <h1>Episodios </h1>
+        <p></p>
+
+        <%= @nombre_serie %>
+        <br> </br>
+        Temporada <%= @temporada %>:
+
+        <br> </br>
+
+        <% @ep.each do |episodio| %>
+            <%= link_to episodio[0], episodio_show_path(num_param: @temporada, serie: @serie, nombre_ep: episodio[0], id_episodio: episodio[1]) %>
+            <br> </br>
+            <span </span>
+        <% end %>
+        </div>
+    </div>
+</div>

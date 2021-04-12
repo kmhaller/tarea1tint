@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" >Series Breaking Bad y Better Call Saul</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <%= form_tag(personajes_show_path, method: :get) do %>
+          <%= text_field_tag(:search, params[:search], placeholder: "Búsqueda por personaje", size:"30")  %>
+          <%= submit_tag("Buscar") %>
+        <% end %>
+    </ul>
+  </div>
+</nav>
+<br>
+<div class="container">
+    <h1>Bienvenido/a</h1>
+</div>
+</br>
+<br>
+<div class="container">
+<div class="columns">
+    <div class="column">
+    Breaking Bad
+    <br> </br>
+    <span>
+    <%- @temporadas.each do |temporada| %>
+        <%= link_to "temporada " + temporada.to_s, episdes_show_path(num_param: temporada, serie: "Breaking+Bad") %>
+        <br> </br>
+    <%- end %>
+    </span>
+    </div>
+</div>
+<br> </br>
+<div class="columns">
+    <div class="column">
+    Better Call Saul
+    <br> </br>
+    <span>
+    <%- @temporadas_1.each do |temporada| %>
+        <%= link_to "temporada " + temporada.to_s, episdes_show_path(num_param: temporada, serie: "Better+Call+Saul") %>
+        <br> </br>
+    <%- end %>
+    </span>
+    </div>
+</div>
+</div>
+</br>
+
+barra de navegacion con espacio para buscar por nombre de personaje.
+falta info de personaje.
+corregir fecha de episodio.
+
+deploy a heroku
+subir a repo en github
+

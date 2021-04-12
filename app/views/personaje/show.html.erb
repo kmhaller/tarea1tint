@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" >Series Breaking Bad y Better Call Saul</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <%= form_tag(personajes_show_path, method: :get) do %>
+          <%= text_field_tag(:search, params[:search], placeholder: "Búsqueda por personaje", size:"30")  %>
+          <%= submit_tag("Buscar") %>
+        <% end %>
+    </ul>
+  </div>
+</nav>
+<br>
+
+
+<div class="container">
+<div class="columns">
+    <div class="column">
+        <h1>Personaje</h1> 
+        <p></p>
+        Nombre: <%= @nombre %>
+        <br> </br> 
+        Ocupación: <%= @info_personaje[0]["occupation"] %>
+        <br> </br>
+        Status: <%= @info_personaje[0]["status"] %>
+        <br> </br>
+        Apodo: <%= @info_personaje[0]["nickname"] %>
+        <br> </br>
+        Temporadas de Breaking Bad en que aparece :  
+        <%- @info_personaje[0]["appearance"].each do |temporada| %>
+            <%= link_to temporada, episdes_show_path(num_param: temporada, serie: "Breaking+Bad") %>
+        <%- end %>
+        <br> </br>
+        Temporadas de Better Call Saul en que aparece :  
+        <%- @info_personaje[0]["better_call_saul_appearance"].each do |temporada|%>
+            <%= link_to temporada, episdes_show_path(num_param: temporada, serie: "Better+Call+Saul") %>
+        <%- end %>
+        <br> </br>
+        Actor/Actirz que lo representa: <%= @info_personaje[0]["portrayed"] %>
+        <br> </br>
+        Foto:
+        <br> </br>
+        <%= image_tag @info_personaje[0]["img"], :width => "40%", :height => "40%" %>
+        <br> </br>
+        Citas:
+        <br> </br>
+        <%- @citas.each do |cita|%>
+            <%= "'" + cita + "'" %>
+            <br> </br>
+        <%- end %>
+        </div>
+    </div>
+</div>

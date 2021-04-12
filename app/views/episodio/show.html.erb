@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" >Series Breaking Bad y Better Call Saul</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <%= form_tag(personajes_show_path, method: :get) do %>
+          <%= text_field_tag(:search, params[:search], placeholder: "Búsqueda por personaje", size:"30")  %>
+          <%= submit_tag("Buscar") %>
+        <% end %>
+    </ul>
+  </div>
+</nav>
+<br>
+
+<div class="container">
+<div class="columns">
+    <div class="column">
+        <h1>Episodio</h1>
+        <p></p>
+
+        Serie: <%= @serie %>
+        <br> </br>
+        Temporada: <%= @temporada %>
+        <br> </br>
+        Nombre: <%= @nombre_ep %>
+        <br> </br>
+        Fecha en que estuvo al aire: <%= @info_episodio[0]["air_date"] %>
+        <br> </br>
+        Código: <%= @info_episodio[0]["episode_id"] %>
+        <br> </br>
+        <br> </br>
+        Personajes:
+        <br> </br>
+        <% @personajes.each do |personaje| %>
+            <%= link_to personaje, personaje_show_path(nombre: personaje) %>
+            <br> </br>
+        <% end %>
+        </div>
+    </div>
+</div>
